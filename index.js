@@ -16,9 +16,12 @@
   örnek output: ""
 */
 
-function dosyaAdiniBul(/* kodlar buraya */) {
-  // kodlar buraya
+function dosyaAdiniBul(path) {
+  const dizi = path.split("/");
+  const dosyaAdi = dizi[dizi.length - 1];
+  return dosyaAdi;
 }
+console.log(dosyaAdiniBul("C:/Users/johnsmith/Music/Beethoven_5.mp3"));
 
 /*
   GÖREV 2
@@ -38,9 +41,18 @@ function dosyaAdiniBul(/* kodlar buraya */) {
   örnek output: 104
 */
 
-function ortalamaBul(/* kodlar buraya */) {
-  // kodlar buraya
+function ortalamaBul(dizi) {
+  if (!dizi.length) {
+    return null;
+  } else {
+    const ortalama =
+      dizi.reduce((toplam, sayi) => {
+        return (toplam += sayi);
+      }, 0) / dizi.length;
+    return Math.round(ortalama);
+  }
 }
+console.log(ortalamaBul([]));
 
 /*
   GÖREV 3
@@ -62,9 +74,14 @@ function ortalamaBul(/* kodlar buraya */) {
   örnek output: [109, 216, 288, 143, 185, 194]
 */
 
-function ortalamadanBuyukleriBul(/* kodlar buraya */) {
-  // kodlar buraya
+function ortalamadanBuyukleriBul(dizi, cb) {
+  if (dizi.length == 0) return null;
+  const yeniDizi = dizi.filter((sayi) => {
+    return sayi >= cb(dizi);
+  });
+  return yeniDizi;
 }
+console.log(ortalamadanBuyukleriBul([], ortalamaBul));
 
 /* !!!! Burdan aşağısını değiştirmeyin !!!! */
 function as() {
